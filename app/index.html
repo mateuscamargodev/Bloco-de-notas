@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco de Notas</title>
+
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="caixa-fundo"> 
+        <div class="espaco-de-edicao"></div>
+    </div>
+    
+    <header>
+        <h1>Bloco de notas</h1>
+        <p>Gerencie as suas anotações</p>
+    </header>
+    <main>
+
+        <label for="titulo-nota">Dê um titulo à sua anotação</label>
+        <input type="text" id="titulo-nota">
+        
+        <label for="conteudo-nota">Faça a sua anotação</label>
+        <textarea id="conteudo-nota">
+            
+        </textarea>
+
+        <button id="envia-anotacao">Adicionar</button>
+        
+        <br>
+        
+        <label for="filtra-anotacoes">Filtrar:</label>
+        <input type="text" id="filtra-anotacoes">
+        <div class="notas-criadas">
+            
+        </div>
+    </main>
+    <footer>
+        
+    </footer>
+    
+    <script src="js/controllers/AnotacaoController.js"></script>
+    <script src="js/controllers/DataBase.js"></script>
+    <script src="js/models/Anotacao.js"></script>
+    <script src="js/views/AnotacaoView.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
