@@ -24,7 +24,8 @@ function editaAnotacao(id) {
     caixaDeEdicao.classList.add("caixa-de-edicao");
     let espacoDeEdicao = document.querySelector(".espaco-de-edicao");
     espacoDeEdicao.appendChild(caixaDeEdicao);
-    caixaFundo.appendChild(caixaDeEdicao);
+    caixaFundo.appendChild(espacoDeEdicao);
+    espacoDeEdicao.style.zIndex = '2';
     let inputTitiuloEdicao = document.createElement('input');
     let inputConteudoEdicao = document.createElement('textarea');
     caixaDeEdicao.appendChild(inputTitiuloEdicao);
