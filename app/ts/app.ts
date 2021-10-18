@@ -17,38 +17,38 @@ inputFiltra.addEventListener("input", function () {
 });
 
 function editaAnotacao(id: number) {
-    const dataBase = new DataBase();
-    const titulos = document.querySelectorAll(".titulo-anotacao");
-    const conteudos = document.querySelectorAll(".conteudo-anotacao");
+    const dataBase: DataBase = new DataBase();
+
+    let anotacao: AnotacaoJSON = dataBase.getAnotacao(id);
+
+    console.log(anotacao);
 
     let caixaFundo: HTMLElement = document.querySelector(".caixa-fundo");
     caixaFundo.style.visibility = 'visible';
 
-    let caixaDeEdicao = document.createElement('div');
-    caixaDeEdicao.classList.add("caixa-de-edicao");
+    let inputTituloEdicao: HTMLInputElement = document.querySelector("#inputTituloEdicao");
+    let inputConteudoEdicao: HTMLInputElement = document.querySelector("#inputConteudoEdicao");
+    let inputId: HTMLInputElement = document.querySelector("#inputId");
 
-    let espacoDeEdicao: HTMLElement = document.querySelector(".espaco-de-edicao");
-    espacoDeEdicao.appendChild(caixaDeEdicao);
-    caixaFundo.appendChild(espacoDeEdicao);
-
-    espacoDeEdicao.style.zIndex = '2';
-
-    let inputTitiuloEdicao = document.createElement('input');
-    let inputConteudoEdicao = document.createElement('textarea');
-    caixaDeEdicao.appendChild(inputTitiuloEdicao);
-    caixaDeEdicao.appendChild(inputConteudoEdicao);
-
-    inputTitiuloEdicao.value = titulos[id].textContent;
-    inputConteudoEdicao.value = conteudos[id].textContent;
-
-    let botaoSalvar = document.createElement('button');
-    botaoSalvar.textContent = "Salvar";
-
-    botaoSalvar.addEventListener("click", function(){
-        dataBase.salvaEdicaoDaAnotacao(id, inputTitiuloEdicao.value, inputConteudoEdicao.value)
-    })
-    
-    caixaDeEdicao.appendChild(botaoSalvar);
-    
-    document.body.appendChild(caixaDeEdicao);
+    inputId.value = id.toString();
+    inputTituloEdicao.value = anotacao.titulo;
+    inputConteudoEdicao.value = anotacao.conteudo;
 }
+
+const botaoSalvaEdicao = document.querySelector("#botaoSalvaEdicao");
+botaoSalvaEdicao.addEventListener("click", function(){
+    
+    let inputTitiuloEdicao: HTMLInputElement = document.querySelector("#inputTituloEdicao");
+    let inputConteudoEdicao: HTMLInputElement = document.querySelector("#inputConteudoEdicao");
+    let inputId: HTMLInputElement = document.querySelector("#inputId");
+
+    const dataBase: DataBase = new DataBase();
+    const anotacao = dataBase.getAnotacao(Number(inputId.value));
+
+    anotacao.titulo = inputTitiuloEdicao.value;
+    anotacao.conteudo = inputConteudoEdicao.value;
+
+    const listaDeAnotacoes = dataBase.listarAnotacoes();
+    listaDeAnotacoes[inputId.value] = anotacao;
+    localStorage.setItem("anotacoes", JSON.stringify(listaDeAnotacoes));
+})

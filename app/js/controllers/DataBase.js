@@ -53,4 +53,8 @@ class DataBase {
         localStorage.setItem("anotacoes", JSON.stringify(lista));
         anotacoesView.mostraAnotacoes();
     }
+    getAnotacao(id) {
+        let lista = this.listarAnotacoes();
+        return lista[id];
+    }
 }

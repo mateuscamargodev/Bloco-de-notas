@@ -73,4 +73,9 @@ class DataBase {
 
         anotacoesView.mostraAnotacoes();
     }
+
+    getAnotacao(id: number) {
+        let lista = this.listarAnotacoes();
+        return lista[id];
+    }
 }
